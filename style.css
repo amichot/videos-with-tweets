@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 1em;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 75%;
+  display: flex;
+  align-items: center;
+}
+
+h1 { 
+  font-size: 2.074em; 
+}
+h2 { 
+  font-size: 1.728em; 
+}
+h3 { 
+  font-size: 1.44em;
+}
+
+header[role="banner"] p {
+  font-size: 1.25em;
+}
+
+@media screen and (min-width: 400px) {
+  html { font-size: 1.25em; }
+
+  #js-form label {
+    margin-right: 80px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  html { 
+    font-size: 1.5em; 
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html { 
+    font-size: 1.75em; 
+  }
+
+  #js-form label {
+    margin-right: 80px;
+  }
+}
+
+header[role="banner"] {
+  text-align: center;
+  padding: 5px;
+}
+
+#js-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#js-form * {
+  margin: 2px;
+}
+
+#js-form label {
+  margin-right: 130px;
+}
+
+#js-form input {
+  padding: 5px;
+  width: 185px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+#js-form input[type="text"] {
+  border: 1px solid rgb(195,207,217);
+  margin-bottom: 20px;
+}
+
+#js-form input[type="submit"] {
+  background-color: rgb(101,88,245);
+  color: white;
+  border: 1px solid rgb(101,88,245)
+}
+
+#js-form input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+  max-width: 500px;
+}
+
+main[role="main"] {
+  margin: 0 auto;
+}
+
+.error-message {
+    color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+@media screen and (min-width: 400px) {
+  html { font-size: 1.25em; }
+
+  #js-form label {
+    margin-right: 115px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  html { 
+    font-size: 1.5em; 
+  }
+  #js-form label {
+    margin-right: 110px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html { 
+    font-size: 1.75em; 
+  }
+
+  #js-form label {
+    margin-right: 100px;
+  }
+}
