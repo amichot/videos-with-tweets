@@ -195,6 +195,11 @@ main[role="main"] {
     margin-right: 100px;
   }
 
+  #list-results li {
+    max-width: 650px;
+    max-height: 279px;
+  }
+
   #list-results li img {
     height: 150px;
     width: 220px;
