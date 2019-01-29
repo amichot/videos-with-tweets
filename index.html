@@ -12,19 +12,13 @@
 </head>
 
 <body>
+  <nav role="navigation">
+    <ul id=js-navlist>
+      <li><input type="button" value="Home" id="home"></li>
+      <li id="results" class="hide"><input type="button" value="Back"></li>
+    </ul>
+  </nav>
   <main role="main">
-    <section id="home">
-      <header role="banner">
-        <h1>Videos with Tweets</h1>
-      </header>
-      <form id="js-form">
-        <label for="Search">Search</label>
-        <input type="text" name="Search" id="js-search">
-
-        <input type="submit" value="Search">
-      </form>
-      <p id="error-message"></p>
-    </section>
   </main>
   <script src="main.js"></script>
 </body>

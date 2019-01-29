@@ -1,9 +1,26 @@
 "use strict";
-
+//youtube API key, url, users search value for back button
 const apiKey = "AIzaSyCyPfvlKfIkWknSdpqQIGjKPOpVcT6opdg";
 const searchURL = "https://www.googleapis.com/youtube/v3/search";
-let userSearch = "";
+let userSearch = ""
+const commentsUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&textFormat=plainText&videoId=${userSearch}&fields=items%2Freplies%2Fcomments%2Fsnippet%2FtextOriginal&key=${apiKey}`;
 
+function getComments() {
+	fetch(commentsUrl)
+		.then(response => {
+			if (response.ok) {
+				return response.json();
+			}
+			throw new Error(response.json());
+		})
+		.then(responseJson => console.log(responseJson))
+		.catch(err => {
+			$("#error-message").text(`Something went wrong: ${err.message}`);
+		});
+}
+
+
+//gets youtube video
 function video(videoId) {
 	$("#video-results").append(`
  <iframe title="YouTube video player" class="youtube-player" type="text/html" 
@@ -12,16 +29,19 @@ frameborder="0" allowFullScreen></iframe>
  `);
 }
 
+
+//displays video page to view video clicked
 function displayVideo(videoId) {
-	$("#search-results").remove();
-	$("main").append(
+	$("main").html(
 		`<section id="video-results"><header><nav></nav></header></section>`
 	);
 	video(videoId);
-	createNavButton("Back");
-	createNavButton("Home");
+	$( "#results" ).removeClass("hide", "Remove");
+	watchBackButton(userSearch);
+	getComments();
 }
 
+// Gets youtube video from results clicked
 function clickResult() {
 	$("#list-results").on("click", "li", function (event) {
 		let videoId = event.currentTarget;
@@ -30,18 +50,17 @@ function clickResult() {
 	});
 }
 
+//Sends User to youtube results page on button click
 function watchBackButton(userSearch) {
 	$("input[value='Back']").on("click", function (event) {
 		$("#video-results").empty();
 		buildYoutubeRequest(userSearch);
+		$("#results").addClass("hide");
 	});
 }
 
-function watchHomeButton() {
-	$("input[value='Home']").on("click", function (event) {
-		$("section").remove();
-		$("body").removeAttr("id");
-		$("main").append(`
+function renderHome() {
+	$("main").html(`
     <section id="home">
     <header role="banner">
       <h1>Videos with Tweets</h1>
@@ -55,28 +74,26 @@ function watchHomeButton() {
     <p id="error-message"></p>
   </section>
     `);
+}
+
+//Sends user to Home Screen on button click
+function watchHomeButton() {
+	$("input[value='Home']").on("click", function (event) {
+		$("body").removeAttr("id");
+		renderHome();
+		$( "#js-navlist" ).addClass("hide");
 	});
 }
 
-function createNavButton(value) {
-	$("nav").append(`<input type="button" value=${value}>`);
-	if (value === "Back") {
-		watchBackButton(userSearch);
-	} else {
-		watchHomeButton();
-	}
-}
-
+// displays youtube search results
 function displayResults(responseJson) {
-	// Remove Home Screen
-	$("#home").remove();
 	// Change html body's CSS
 	$("body").attr("id", "body-results");
 	// ADD Section, Header, and Return Home Button
-	$("main").append(
-		`<section id="search-results"><header><nav></nav><h1>Select Youtube Video</h1></header></section>`
+	$("main").html(
+		`<section id="search-results"><header><h1>Select Youtube Video</h1></header></section>`
 	);
-	createNavButton("Home");
+	$( "#js-navlist" ).removeClass("hide");
 	// Add Search Results Content
 	$("#search-results").append(`<ul id="list-results"></ul>`);
 	for (let i = 0; i < responseJson.items.length; i++) {
@@ -93,6 +110,7 @@ function displayResults(responseJson) {
 	clickResult();
 }
 
+// Youtube API format params
 function formatQueryParams(params) {
 	const queryItems = Object.keys(params).map(
 		key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
@@ -100,8 +118,8 @@ function formatQueryParams(params) {
 	return queryItems.join("&");
 }
 
+//Makes call to Youtube API
 function buildYoutubeRequest(query) {
-	console.log(query);
 	const params = {
 		key: apiKey,
 		q: query,
@@ -124,7 +142,7 @@ function buildYoutubeRequest(query) {
 			$("#error-message").text(`Something went wrong: ${err.message}`);
 		});
 }
-
+// home screen watch for user submit, call buildYoutubeRequest
 function watchForm() {
 	$("#js-form").on("submit", function (event) {
 		event.preventDefault();
@@ -133,4 +151,10 @@ function watchForm() {
 	});
 }
 
-watchForm();
+function launchHomeScreen() {
+	watchHomeButton()
+	$('#home').trigger('click')
+	watchForm()
+}
+
+launchHomeScreen()
