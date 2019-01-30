@@ -2,18 +2,55 @@
 //youtube API key, url, users search value for back button
 const apiKey = "AIzaSyCyPfvlKfIkWknSdpqQIGjKPOpVcT6opdg";
 const searchURL = "https://www.googleapis.com/youtube/v3/search";
-let userSearch = ""
-const commentsUrl = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&textFormat=plainText&videoId=${userSearch}&fields=items%2Freplies%2Fcomments%2Fsnippet%2FtextOriginal&key=${apiKey}`;
+let userSearch = "";
+let vidId = "";
+const commentsURL = "https://www.googleapis.com/youtube/v3/commentThreads";
+
+var Sentiment = require('sentiment');
+var sentiment = new Sentiment();
+var result = sentiment.analyze('Cats are stupid.');
+console.dir(result);
+
+function displayComments(responseJson) {
+	console.log(responseJson.items[0].snippet["topLevelComment"]["snippet"].textOriginal)
+	let commentsArr = [];
+	responseJson.items.forEach(function(item){
+		let comment = item.snippet["topLevelComment"]["snippet"].textOriginal
+		commentsArr.push(comment);
+	})
+	console.log(commentsArr)
+}
+
+function formatCommentParams(params) {
+	const queryItems = Object.keys(params).map(
+		key => `${key}=${params[key]}`
+	);
+	return queryItems.join("&");
+}
 
 function getComments() {
-	fetch(commentsUrl)
+
+	const param = {
+		part: "snippet\%2Creplies",
+		maxResults: 100,
+		textFormat: "plainText",
+		videoId: vidId,
+		fields: "items(replies\%2Fcomments\%2Fsnippet\%2FtextOriginal\%2Csnippet\%2FtopLevelComment\%2Fsnippet\%2FtextOriginal)",
+		key: apiKey
+	};
+
+	const queryString = formatCommentParams(param);
+	const url = commentsURL + "?" + queryString;
+	console.log(url);
+
+	fetch(url)
 		.then(response => {
 			if (response.ok) {
 				return response.json();
 			}
 			throw new Error(response.json());
 		})
-		.then(responseJson => console.log(responseJson))
+		.then(responseJson => displayComments(responseJson))
 		.catch(err => {
 			$("#error-message").text(`Something went wrong: ${err.message}`);
 		});
@@ -44,9 +81,9 @@ function displayVideo(videoId) {
 // Gets youtube video from results clicked
 function clickResult() {
 	$("#list-results").on("click", "li", function (event) {
-		let videoId = event.currentTarget;
-		videoId = $(videoId).attr("id");
-		displayVideo(videoId);
+		vidId = event.currentTarget;
+		vidId = $(vidId).attr("id");
+		displayVideo(vidId);
 	});
 }
 
@@ -147,6 +184,7 @@ function watchForm() {
 	$("#js-form").on("submit", function (event) {
 		event.preventDefault();
 		userSearch = $("#js-search").val();
+		console.log(userSearch)
 		buildYoutubeRequest(userSearch);
 	});
 }
