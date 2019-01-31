@@ -1,0 +1,23 @@
+{
+  "name": "videos-with-tweets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "watchify main.js -o bundle.js --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amichot/videos-with-tweets.git"
+  },
+  "author": "adrian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amichot/videos-with-tweets/issues"
+  },
+  "homepage": "https://github.com/amichot/videos-with-tweets#readme",
+  "dependencies": {
+    "sentiment": "^5.0.1",
+    "twitter-node-client": "0.0.6"
+  }
+}

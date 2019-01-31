@@ -1,24 +1,59 @@
 "use strict";
 //youtube API key, url, users search value for back button
-const apiKey = "AIzaSyCyPfvlKfIkWknSdpqQIGjKPOpVcT6opdg";
+const twitterService = require("twitter.js")()
+console.log(twitterService.test());
+
+const apiKey = "AIzaSyCOWBRqsfecwAAwNE5SKu1vio8LMtgzgkE";
 const searchURL = "https://www.googleapis.com/youtube/v3/search";
 let userSearch = "";
 let vidId = "";
 const commentsURL = "https://www.googleapis.com/youtube/v3/commentThreads";
 
-var Sentiment = require('sentiment');
-var sentiment = new Sentiment();
-var result = sentiment.analyze('Cats are stupid.');
-console.dir(result);
+
+function getSentiment(comments) {
+	let positive = 0;
+	let neutral = 0;
+	let negative = 0;
+	let Sentiment = require('sentiment');
+	let sentiment = new Sentiment();
+	comments.forEach(function(comment){
+	let	result = sentiment.analyze(comment)
+	if (result.score > 0) {
+		positive += 1;
+	}
+	else if (result.score === 0) {
+		neutral += 1;
+	}
+
+	else if (result.score < 0) {
+		negative += 1
+	}
+	
+})
+let totalComments = positive + neutral + negative;
+let positivePercent = Math.round(positive / totalComments * 100);
+let neutralPercent = Math.round(neutral / totalComments * 100);
+let negativePercent = Math.round(negative / totalComments * 100);
+let commentsPercentage = [positivePercent, neutralPercent, negativePercent]
+return commentsPercentage;
+}
+
 
 function displayComments(responseJson) {
-	console.log(responseJson.items[0].snippet["topLevelComment"]["snippet"].textOriginal)
 	let commentsArr = [];
 	responseJson.items.forEach(function(item){
 		let comment = item.snippet["topLevelComment"]["snippet"].textOriginal
 		commentsArr.push(comment);
 	})
-	console.log(commentsArr)
+	let commentsPercentage = getSentiment(commentsArr)
+	$("#video-results").append(`
+	<h2>Comments</h2>
+		<ul id="public-sentiment">
+			<li class="positive"><span>${commentsPercentage[0]}\%</span></li>
+			<li class="neutral"><span>${commentsPercentage[1]}\%</span></li>
+			<li class="negative"><span>${commentsPercentage[2]}\%</span></li>
+		</ul>
+	`)
 }
 
 function formatCommentParams(params) {

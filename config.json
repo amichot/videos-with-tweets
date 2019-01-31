@@ -1,0 +1,9 @@
+{
+  "twitter": {
+    "consumerKey": "ZU9PXNVRYeipnia2MVj3IBumV",
+    "consumerSecret": "PFAfrR761X4Le0snKSpt7VvBZvAsosaeVNvwVHUe6W4xkiJrhL",
+    "accessToken": "3341290274-WZYaC13K6P3jqpPjESscrGUGJ3qZ8asHlxp0cUs",
+    "accessTokenSecret": "rwgt3een8S6BhUPh7M3oPSuJ3855PpBnI4qu3bDBfKse8",
+    "callBackUrl": "https://amichot.github.io/videos-with-tweets/"
+  }
+}

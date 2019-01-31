@@ -176,6 +176,45 @@ main[role="main"] {
   padding: 2px 5px 0px 0px;
 }
 
+#video-results h2 {
+  background-color: rgb(223,231,237);
+  text-align: center;
+}
+
+#public-sentiment {
+  display: flex;
+  flex-direction: row;
+  line-height: 1.5em;
+}
+
+#public-sentiment li {
+  flex: 1;
+  text-align: center;
+}
+
+#public-sentiment span {
+  display: block;
+  font-size: 2em;
+}
+
+#public-sentiment .positive span:after {
+  content: "Positive";
+  display: block;
+  font-size: .5em;
+}
+
+#public-sentiment .neutral span:after {
+  content: "Neutral";
+  display: block;
+  font-size: .5em;
+}
+
+#public-sentiment .negative span:after {
+  content: "Negative";
+  display: block;
+  font-size: .5em;
+}
+
 @media screen and (max-width: 250px) {
   #list-results li img {
     height: 70px;
