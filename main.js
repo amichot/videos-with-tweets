@@ -1,7 +1,7 @@
 "use strict";
 //youtube API key, url, users search value for back button
-const twitterService = require("twitter.js")()
-console.log(twitterService.test());
+const twitterService = require("./twitter.js")()
+console.log("test" + twitterService.test());
 
 const apiKey = "AIzaSyCOWBRqsfecwAAwNE5SKu1vio8LMtgzgkE";
 const searchURL = "https://www.googleapis.com/youtube/v3/search";
