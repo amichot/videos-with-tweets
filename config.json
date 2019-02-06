@@ -1,14 +1,14 @@
 {
   "twitter": {
-    "consumerKey": "tWlxmiHQQHPiiXitRc34RCAbC",
-    "consumerSecret": "8Kq2HRKqpxHFpDIvFnuBvJdahGqXmGPy611UM8GCOk21QyQxux",
-    "accessToken": "3341290274-V145ReEvEHG84FjrPBkN20SPyT1IiY2huaJRuDS",
-    "accessTokenSecret": "pIcJlSEusiRdKqZLvoQu1OXeHqZfUJ4SeB4D3noUvVpry",
+    "consumerKey": "9J0g9OXIW6vukyaPh5DBE1hpk",
+    "consumerSecret": "z1ZX4RP2cjLg21hF2Tbf8LbW9SELxavz1KUgrd3XicdwJfDXhE ",
+    "accessToken": "3341290274-UwPPcGOvbGHEJN0BdYnAZqAVSlea516atXR41T2",
+    "accessTokenSecret": "m6VlB7NJAG4a2Q9AvEwJSitCxZWXIx8hvVqGu8Tvy45Qv",
     "callBackUrl": "http://127.0.0.1:1738"
   },
 
   "youtube": {
-    "key": "AIzaSyDmbzA6wAYwTPnCcNC5PeWn2jHAzh_Ud8s",
+    "key": "AIzaSyBeNzciJt1V9Yh6acnDLaejwXV_dm7Y6hk",
     "searchURL": "https://www.googleapis.com/youtube/v3/search"
   }
 }
