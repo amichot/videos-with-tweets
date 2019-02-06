@@ -31,7 +31,7 @@ h2 {
 }
 
 p {
-  font-size: .65em;
+  font-size: .75em;
   margin: 0;
 }
 
@@ -93,7 +93,7 @@ ul {
 
 nav ul {
   background-color: #f1f1f1;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   display: flex;
@@ -159,6 +159,7 @@ main[role="main"] {
   justify-content: flex-start;
   border: 1px solid rgb(195, 207, 217);
   max-width: 45%;
+  min-width: 45%;
   margin-bottom: 10px;
   contain: content;
   padding-top: 2px;
@@ -181,14 +182,21 @@ main[role="main"] {
   text-align: center;
 }
 
+.youtube-player {
+  width: 100%;
+  height: 200px;
+}
+
 #public-sentiment {
   display: flex;
   flex-direction: row;
   line-height: 1.5em;
+  height: auto;
+  width: auto;
 }
 
 #public-sentiment li {
-  flex: 1;
+  flex: 1 100%;
   text-align: center;
 }
 
@@ -215,6 +223,24 @@ main[role="main"] {
   font-size: .5em;
 }
 
+#popular_tweets {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5em;
+  height: auto;
+}
+
+#popular_tweets li {
+  font-size: .75em;
+  padding-bottom: 10px;
+}
+
+#popular_tweets span {
+  font-size: 1.2em;
+  color: rgb(133,157,180);
+  padding-left: 10px;
+}
+
 @media screen and (max-width: 250px) {
   #list-results li img {
     height: 70px;
@@ -236,6 +262,18 @@ main[role="main"] {
     min-width: 160px;
     max-width: 185px;
   }
+
+  #video-results div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .youtube-player {
+    width: 360px;
+    height: 300px;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -252,6 +290,19 @@ main[role="main"] {
     width: 60%;
     max-width: 220px;
   }
+
+  #video-results div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .youtube-player {
+    width: 640px;
+    height: 390px;
+    margin: 0 auto;
+  }
+
 }
 
 @media screen and (min-width: 1200px) {

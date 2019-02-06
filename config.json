@@ -1,9 +1,14 @@
 {
   "twitter": {
-    "consumerKey": "ZU9PXNVRYeipnia2MVj3IBumV",
-    "consumerSecret": "PFAfrR761X4Le0snKSpt7VvBZvAsosaeVNvwVHUe6W4xkiJrhL",
-    "accessToken": "3341290274-WZYaC13K6P3jqpPjESscrGUGJ3qZ8asHlxp0cUs",
-    "accessTokenSecret": "rwgt3een8S6BhUPh7M3oPSuJ3855PpBnI4qu3bDBfKse8",
-    "callBackUrl": "https://amichot.github.io/videos-with-tweets/"
+    "consumerKey": "tWlxmiHQQHPiiXitRc34RCAbC",
+    "consumerSecret": "8Kq2HRKqpxHFpDIvFnuBvJdahGqXmGPy611UM8GCOk21QyQxux",
+    "accessToken": "3341290274-V145ReEvEHG84FjrPBkN20SPyT1IiY2huaJRuDS",
+    "accessTokenSecret": "pIcJlSEusiRdKqZLvoQu1OXeHqZfUJ4SeB4D3noUvVpry",
+    "callBackUrl": "http://127.0.0.1:1738"
+  },
+
+  "youtube": {
+    "key": "AIzaSyDmbzA6wAYwTPnCcNC5PeWn2jHAzh_Ud8s",
+    "searchURL": "https://www.googleapis.com/youtube/v3/search"
   }
 }

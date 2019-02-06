@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  "scripts": {
-    "start": "watchify main.js -o bundle.js --debug"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amichot/videos-with-tweets.git"
@@ -17,7 +14,23 @@
   },
   "homepage": "https://github.com/amichot/videos-with-tweets#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0",
     "sentiment": "^5.0.1",
-    "twitter-node-client": "0.0.6"
+    "twitter-node-client": "0.0.6",
+    "uuid": "^3.3.2"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "parser": "babylon",
+    "printWidth": 80,
+    "singleQuote": true,
+    "semi": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
   }
 }
