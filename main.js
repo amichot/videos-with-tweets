@@ -32,7 +32,7 @@ app.route('/youtube').get(function (req, res) {
 		key: config.youtube.key,
 		q: userSearch,
 		part: "snippet",
-		maxResults: 10,
+		maxResults: 20,
 		type: "video"
 	};
 
@@ -50,7 +50,62 @@ app.route('/twitter').get(function (req, res) {
 		res.send(err);
 	};
 	var success = function (data) {
-		res.send(data);
+		let sentiment = new Sentiment();
+		data = JSON.parse(data)
+		const obj = {
+			mostPositive: {
+				score: 0
+			},
+			secondMostPositive: {
+				score: 0
+			},
+			mostNegative: {
+				score: 0
+			},
+			secondMostNegative: {
+				score: 0
+			},
+			mostFamous: {
+				followers: 0
+			},
+			secondMostFamous: {
+				followers: 0
+			}
+		}
+		data.statuses.forEach(function (tweet) {
+			let tweetInfo = {
+				"screenName": tweet.user.screen_name,
+				"text": tweet.text,
+				"followers": tweet.user.followers_count,
+				"score": sentiment.analyze(tweet.text).score
+			};
+
+			if(tweetInfo.score > obj.mostPositive.score) {
+				obj.mostPositive = tweetInfo;
+			}
+
+			if(tweetInfo.score < obj.mostPositive.score && tweetInfo.score > obj.secondMostPositive.score) {
+				obj.secondMostPositive = tweetInfo
+			}
+
+			if(tweetInfo.score < obj.mostNegative.score) {
+				obj.mostNegative = tweetInfo
+			}
+
+			if(tweetInfo.score > obj.mostNegative.score && tweetInfo.score < obj.secondMostPositive.score) {
+				obj.secondMostNegative = tweetInfo
+			}
+
+			if(tweetInfo.followers > obj.mostFamous.followers) {
+				obj.mostFamous = tweetInfo
+			}
+
+			if(tweetInfo.followers < obj.mostFamous.followers && tweetInfo.followers > obj.secondMostFamous.followers) {
+				obj.secondMostFamous = tweetInfo
+			}
+		});
+
+		res.send(obj);
 	};
 	var twitter = new Twitter({
 		"consumerKey": config.twitter.consumerKey,
@@ -62,7 +117,9 @@ app.route('/twitter').get(function (req, res) {
 
 	twitter.getSearch({
 		'q': userSearch,
-		'count': 100
+		'count': 100,
+		'lang': 'en',
+		'result\_type':'popular'
 	}, error, success);
 });
 

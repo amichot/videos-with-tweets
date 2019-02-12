@@ -1,7 +1,7 @@
 {
   "twitter": {
     "consumerKey": "9J0g9OXIW6vukyaPh5DBE1hpk",
-    "consumerSecret": "z1ZX4RP2cjLg21hF2Tbf8LbW9SELxavz1KUgrd3XicdwJfDXhE ",
+    "consumerSecret": "z1ZX4RP2cjLg21hF2Tbf8LbW9SELxavz1KUgrd3XicdwJfDXhE",
     "accessToken": "3341290274-UwPPcGOvbGHEJN0BdYnAZqAVSlea516atXR41T2",
     "accessTokenSecret": "m6VlB7NJAG4a2Q9AvEwJSitCxZWXIx8hvVqGu8Tvy45Qv",
     "callBackUrl": "http://127.0.0.1:1738"

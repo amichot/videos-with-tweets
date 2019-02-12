@@ -23,16 +23,23 @@ body {
 }
 
 h1 {
-  font-size: 1.2em;
+  font-size: 1.5em;
+  font-family: 'Racing Sans One', cursive;
 }
 
 h2 {
   font-size: .75em;
+  font-family: 'Slabo', serif;
 }
 
 p {
-  font-size: .75em;
+  font-size: 1em;
   margin: 0;
+  font-family: 'Slabo', serif;
+}
+
+li {
+  font-family: 'Slabo', serif;
 }
 
 input[type="button"]:hover {
@@ -40,8 +47,16 @@ input[type="button"]:hover {
 }
 
 header[role="banner"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 5px 5px 40px 5px;
+}
+
+header[role="banner"] p {
+  max-width: 600px;
 }
 
 #js-form {
@@ -133,6 +148,7 @@ main[role="main"] {
 
 #search-results header h1 {
   text-align: center;
+  text-decoration: underline;
 }
 
 #search-results header nav {
@@ -145,28 +161,47 @@ main[role="main"] {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  max-width: 1150px;
+  margin-bottom: 30px;
+}
+
+#list-results h2 {
+  text-align: center;
 }
 
 #list-results li img {
   height: 120px;
   width: 100%;
+  filter: saturate(80%);
+  transition: filter .3s ease-in-out;
+  border-radius: 3px;
 }
 
 #list-results li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  border: 1px solid rgb(195, 207, 217);
-  max-width: 45%;
-  min-width: 45%;
-  margin-bottom: 10px;
+  border: 1px solid rgba(133, 157, 180, 0.3);
+  max-width: 200px;
+  margin: 0 5px 5px 0;
+  padding: 5px;
   contain: content;
-  padding-top: 2px;
+  border-radius: 3px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1),
+    0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow .3s ease-in-out;
 }
 
-#list-results li *:hover {
+#list-results li:hover {
   cursor: pointer;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3),
+    0 1px 1px rgba(0, 0, 0, 0.3);
+  transition: box-shadow .3s ease-in-out;
+}
+
+#list-results li:hover img {
+  filter: saturate(100%);
+  transition: filter .3s ease-in-out;
 }
 
 #video-results header {
@@ -180,6 +215,8 @@ main[role="main"] {
 #video-results h2 {
   background-color: rgb(223,231,237);
   text-align: center;
+  font-family: 'Racing Sans One', cursive;
+  font-size: 1.3em;
 }
 
 .youtube-player {
@@ -226,19 +263,65 @@ main[role="main"] {
 #popular_tweets {
   display: flex;
   flex-direction: column;
-  line-height: 1.5em;
+  line-height: 1em;
   height: auto;
+  flex-wrap: nowrap;
+}
+
+.positiveTweet {
+  border: 2px solid #132A30;
+  background-color: #132A30;
+  color: white;
+  font-weight: bold;
+}
+
+.negativeTweet {
+  border: 2px solid #3A1F24;
+  background-color: #3A1F24;
+  color: white;
+  font-weight: bold;
+}
+
+.famousTweet {
+  border: 2px solid #205C68;
+  background-color: #205C68;
+  color: white;
+  font-weight: bold;
 }
 
 #popular_tweets li {
   font-size: .75em;
-  padding-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 40px;
+  max-width: 200px;
+  flex-wrap: wrap;
+}
+
+#popular_tweets p {
+  font-weight: normal;
+  padding-top: 5px;
+}
+
+#popular_tweets li:nth-child(even) {
+  display: flex;
+  align-self: flex-end;
+}
+
+#popular_tweets li:nth-child(odd) {
+  display: flex;
+  align-self: flex-start;
 }
 
 #popular_tweets span {
+  display: inline-flex;
   font-size: 1.2em;
   color: rgb(133,157,180);
   padding-left: 10px;
+}
+
+#popular_tweets span::before {
+  content: '#';
 }
 
 @media screen and (max-width: 250px) {
@@ -256,13 +339,6 @@ main[role="main"] {
     margin-right: 115px;
   }
 
-  #list-results li img {
-    height: 120px;
-    width: 70%;
-    min-width: 160px;
-    max-width: 185px;
-  }
-
   #video-results div {
     width: 100%;
     display: flex;
@@ -270,8 +346,19 @@ main[role="main"] {
   }
 
   .youtube-player {
-    width: 360px;
+    width: 400px;
     height: 300px;
+    margin: 0 auto;
+  }
+  #popular_tweets li {
+    max-width: 300px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .youtube-player {
+    width: 500px;
+    height: 350px;
     margin: 0 auto;
   }
 }
@@ -283,12 +370,6 @@ main[role="main"] {
 
   #js-form label {
     margin-right: 110px;
-  }
-
-  #list-results li img {
-    height: 140px;
-    width: 60%;
-    max-width: 220px;
   }
 
   #video-results div {
@@ -303,6 +384,10 @@ main[role="main"] {
     margin: 0 auto;
   }
 
+  #popular_tweets li {
+    max-width: 500px;
+  }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -314,16 +399,6 @@ main[role="main"] {
     margin-right: 100px;
   }
 
-  #list-results li {
-    max-width: 650px;
-    max-height: 279px;
-  }
-
-  #list-results li img {
-    height: 150px;
-    width: 220px;
-  }
-
   nav {
     margin-right: 20px;
   }
@@ -331,5 +406,11 @@ main[role="main"] {
   input[type="button"] {
     height: 30px;
     width: 75px;
+  }
+
+  .youtube-player {
+    width: 840px;
+    height: 490px;
+    margin: 0 auto;
   }
 }

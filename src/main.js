@@ -2,47 +2,20 @@ let vidId = "";
 let userSearch = ""
 
 
-function postTweets(tweetsArray) {
+function postTweets(responseJson) {
+	console.log(responseJson)
 	$("#video-results").append(`
 	<h2>Related Tweets</h2>
 		<ul id="popular_tweets"></ul>
 	`)
-	tweetsArray.forEach(function (tweetObj) {
-		$("#popular_tweets").append(`
-			<li>${tweetObj.text}<span>${tweetObj.screenName}</span></li>
+			$("#popular_tweets").append(`
+			<li class="positiveTweet"> Positive Tweet <p>${responseJson.mostPositive.text}<span>${responseJson.mostPositive.screenName}</span></p></li>
+			<li class="negativeTweet">Negative Tweet <p>${responseJson.mostNegative.text}<span>${responseJson.mostNegative.screenName}</span></p></li>
+			<li class="positiveTweet">Positive Tweet <p>${responseJson.secondMostPositive.text}<span>${responseJson.secondMostPositive.screenName}</span></p></li>
+			<li class="negativeTweet">Negative Tweet <p>${responseJson.secondMostNegative.text}<span>${responseJson.secondMostNegative.screenName}</span></p></li>
+			<li class="famousTweet">Famous Tweet <p>${responseJson.mostFamous.text}<span>${responseJson.mostFamous.screenName}</span></p></li>
+			<li class="famousTweet">Famous Tweet <p>${responseJson.secondMostFamous.text}<span>${responseJson.secondMostFamous.screenName}</span></p></li>
 		`)
-	})
-}
-
-function getPopularTweets(responseJson) {
-	const famousTweets = [];
-
-	responseJson.statuses.forEach(function (tweet) {
-		console.log(tweet);
-		let followerCount = tweet.user.followers_count;
-		let tweetInfo = {
-			"screenName": tweet.user.screen_name,
-			"text": tweet.text,
-			"followers": followerCount
-		};
-
-		if (famousTweets.length < 5) {
-			famousTweets.push(tweetInfo)
-		} else if (famousTweets.length === 5) {
-			let indexNumber = 0;
-			famousTweets.forEach(function (famousTweet, index) {
-				if (famousTweet.followers < famousTweets[indexNumber].followers) {
-					indexNumber = index
-				}
-
-			})
-			if (famousTweets[indexNumber].followers < followerCount) {
-				famousTweets[indexNumber] = tweetInfo;
-			}
-		}
-	})
-
-	postTweets(famousTweets)
 }
 
 function buildTwitterRequest(userSearch) {
@@ -54,7 +27,7 @@ function buildTwitterRequest(userSearch) {
 			}
 			throw new Error(response.json());
 		})
-		.then(responseJson => getPopularTweets(responseJson))
+		.then(responseJson => postTweets(responseJson))
 		.catch(err => {
 			$("#error-message").text(`Something went wrong: ${err.message}`);
 		});
@@ -139,7 +112,6 @@ function displayResults(responseJson) {
 				responseJson.items[i].snippet.thumbnails.default.url
 			}'>
       <h2>${responseJson.items[i].snippet.title}</h2>
-      <p>${responseJson.items[i].snippet.description}</p>
       </li>`
 		);
 	}
