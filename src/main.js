@@ -3,7 +3,6 @@ let userSearch = ""
 
 
 function postTweets(responseJson) {
-	console.log(responseJson)
 	$("#video-results").append(`
 	<h2>Related Tweets</h2>
 		<ul id="popular_tweets"></ul>
@@ -19,7 +18,6 @@ function postTweets(responseJson) {
 }
 
 function buildTwitterRequest(userSearch) {
-	console.log("what the " + userSearch)
 	fetch(`/twitter?search=${userSearch}`)
 		.then(response => {
 			if (response.ok) {

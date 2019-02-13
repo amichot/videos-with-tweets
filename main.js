@@ -79,7 +79,6 @@ app.route('/twitter').get(function (req, res) {
 				"followers": tweet.user.followers_count,
 				"score": sentiment.analyze(tweet.text).score
 			};
-			console.log(tweetInfo.score)
 
 			if (tweetInfo.score > obj.mostPositive.score) {
 				obj.secondMostPositive = obj.mostPositive;
