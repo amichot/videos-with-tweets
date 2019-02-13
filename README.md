@@ -7,9 +7,9 @@
 
 ## App Photos
 
-![alt text](https://i.imgur.com/KPBfumi.png "Home Page")
-![alt text](https://imgur.com/hGeH8Jf "Results Page")
-![alt text](https://imgur.com/KPBfumi "Video Page")
+![Home Page](https://i.imgur.com/XHtiCdx.png "Home Page")
+![Results Page](https://i.imgur.com/hGeH8Jf.png "Results Page")
+![Video Page](https://i.imgur.com/KPBfumi.png "Video Page")
 
 ## Description
   At the home page the user searches for a YouTube video exactly as he would on Youtube. The results page is also similar,
