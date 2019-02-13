@@ -2,16 +2,16 @@
 
 
 ## Links
-[Live App](https://amichot.github.io/videoswithtweets)
-[Github Repo](https://github.com/amichot/videoswithtweets)
+* [Live App](https://amichot.github.io/videoswithtweets)
+* [Github Repo](https://github.com/amichot/videoswithtweets)
 
 ## App Photos
-
-* ![Home Page](https://i.imgur.com/XHtiCdx.png "Home Page")
-
-* ![Results Page](https://i.imgur.com/hGeH8Jf.png "Results Page")
-
-* ![Video Page](https://i.imgur.com/KPBfumi.png "Video Page")
+### Home Page
+![Home Page](https://i.imgur.com/XHtiCdx.png "Home Page")
+### Results Page
+![Results Page](https://i.imgur.com/hGeH8Jf.png "Results Page")
+### Video Page
+![Video Page](https://i.imgur.com/KPBfumi.png "Video Page")
 
 ## Description
   At the home page the user searches for a YouTube video exactly as he would on Youtube. The results page is also similar,
