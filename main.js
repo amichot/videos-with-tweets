@@ -79,29 +79,33 @@ app.route('/twitter').get(function (req, res) {
 				"followers": tweet.user.followers_count,
 				"score": sentiment.analyze(tweet.text).score
 			};
+			console.log(tweetInfo.score)
 
-			if(tweetInfo.score > obj.mostPositive.score) {
+			if (tweetInfo.score > obj.mostPositive.score) {
+				obj.secondMostPositive = obj.mostPositive;
 				obj.mostPositive = tweetInfo;
 			}
 
-			if(tweetInfo.score < obj.mostPositive.score && tweetInfo.score > obj.secondMostPositive.score) {
-				obj.secondMostPositive = tweetInfo
+			else if (tweetInfo.score <= obj.mostPositive.score && tweetInfo.score > obj.secondMostPositive.score) {
+				obj.secondMostPositive = tweetInfo;
 			}
 
-			if(tweetInfo.score < obj.mostNegative.score) {
-				obj.mostNegative = tweetInfo
+			if (tweetInfo.score < obj.mostNegative.score) {
+				obj.secondMostNegative = obj.mostNegative;
+				obj.mostNegative = tweetInfo;
 			}
 
-			if(tweetInfo.score > obj.mostNegative.score && tweetInfo.score < obj.secondMostPositive.score) {
-				obj.secondMostNegative = tweetInfo
+			else if (tweetInfo.score >= obj.mostNegative.score && tweetInfo.score < obj.secondMostNegative.score) {
+				obj.secondMostNegative = tweetInfo;
 			}
 
-			if(tweetInfo.followers > obj.mostFamous.followers) {
-				obj.mostFamous = tweetInfo
+			if (tweetInfo.followers > obj.mostFamous.followers) {
+				obj.secondMostFamous = obj.mostFamous;
+				obj.mostFamous = tweetInfo;
 			}
 
-			if(tweetInfo.followers < obj.mostFamous.followers && tweetInfo.followers > obj.secondMostFamous.followers) {
-				obj.secondMostFamous = tweetInfo
+			else if (tweetInfo.followers < obj.mostFamous.followers && tweetInfo.followers > obj.secondMostFamous.followers) {
+				obj.secondMostFamous = tweetInfo;
 			}
 		});
 
@@ -119,7 +123,7 @@ app.route('/twitter').get(function (req, res) {
 		'q': userSearch,
 		'count': 100,
 		'lang': 'en',
-		'result\_type':'popular'
+		'result\_type': 'popular'
 	}, error, success);
 });
 

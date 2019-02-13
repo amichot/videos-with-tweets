@@ -8,7 +8,7 @@ function postTweets(responseJson) {
 	<h2>Related Tweets</h2>
 		<ul id="popular_tweets"></ul>
 	`)
-			$("#popular_tweets").append(`
+	$("#popular_tweets").append(`
 			<li class="positiveTweet"> Positive Tweet <p>${responseJson.mostPositive.text}<span>${responseJson.mostPositive.screenName}</span></p></li>
 			<li class="negativeTweet">Negative Tweet <p>${responseJson.mostNegative.text}<span>${responseJson.mostNegative.screenName}</span></p></li>
 			<li class="positiveTweet">Positive Tweet <p>${responseJson.secondMostPositive.text}<span>${responseJson.secondMostPositive.screenName}</span></p></li>

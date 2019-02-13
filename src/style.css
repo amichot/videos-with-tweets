@@ -213,7 +213,7 @@ main[role="main"] {
 }
 
 #video-results h2 {
-  background-color: rgb(223,231,237);
+  background-color: rgb(223, 231, 237);
   text-align: center;
   font-family: 'Racing Sans One', cursive;
   font-size: 1.3em;
@@ -316,7 +316,7 @@ main[role="main"] {
 #popular_tweets span {
   display: inline-flex;
   font-size: 1.2em;
-  color: rgb(133,157,180);
+  color: rgb(133, 157, 180);
   padding-left: 10px;
 }
 
@@ -350,6 +350,7 @@ main[role="main"] {
     height: 300px;
     margin: 0 auto;
   }
+
   #popular_tweets li {
     max-width: 300px;
   }
