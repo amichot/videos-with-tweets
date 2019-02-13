@@ -8,7 +8,9 @@
 ## App Photos
 
 * ![Home Page](https://i.imgur.com/XHtiCdx.png "Home Page")
+
 * ![Results Page](https://i.imgur.com/hGeH8Jf.png "Results Page")
+
 * ![Video Page](https://i.imgur.com/KPBfumi.png "Video Page")
 
 ## Description
