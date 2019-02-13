@@ -7,7 +7,7 @@
 
 ## App Photos
 
-![alt text](https://imgur.com/XHtiCdx "Home Page")
+![alt text](https://i.imgur.com/KPBfumi.png "Home Page")
 ![alt text](https://imgur.com/hGeH8Jf "Results Page")
 ![alt text](https://imgur.com/KPBfumi "Video Page")
 
